@@ -35,6 +35,7 @@
     "@nx/web": "21.2.1",
     "@nx/workspace": "21.2.1",
     "@schematics/angular": "~20.0.0",
+    "@stylistic/eslint-plugin": "^5.0.0",
     "@swc-node/register": "~1.9.1",
     "@swc/core": "~1.5.7",
     "@swc/helpers": "~0.5.11",
@@ -59,6 +60,12 @@
   },
   "trustedDependencies": [
     "@parcel/watcher",
-    "@tailwindcss/oxide"
+    "@swc/core",
+    "@tailwindcss/oxide",
+    "cypress",
+    "esbuild",
+    "lmdb",
+    "msgpackr-extract",
+    "nx"
   ]
 }

@@ -1,4 +1,5 @@
-import nx from '@nx/eslint-plugin';
+import nx from '@nx/eslint-plugin'
+import stylistic from '@stylistic/eslint-plugin'
 
 export default [
   ...nx.configs['flat/base'],
@@ -26,17 +27,13 @@ export default [
     },
   },
   {
-    files: [
-      '**/*.ts',
-      '**/*.tsx',
-      '**/*.cts',
-      '**/*.mts',
-      '**/*.js',
-      '**/*.jsx',
-      '**/*.cjs',
-      '**/*.mjs',
-    ],
+    files: ['**/*.ts', '**/*.tsx', '**/*.cts', '**/*.mts', '**/*.js', '**/*.jsx', '**/*.cjs', '**/*.mjs'],
     // Override or add rules here
-    rules: {},
+    plugins: {
+      '@stylistic': stylistic,
+    },
+    rules: {
+      '@stylistic/semi': ['error', 'never'],
+    },
   },
-];
+]
