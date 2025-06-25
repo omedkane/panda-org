@@ -5,8 +5,12 @@ import { fromEvent, Subject, take, takeUntil } from 'rxjs'
   selector: 'app-revealer',
   styles: [
     `
+      :host {
+        width: 100%;
+      }
       .revealer {
         height: 0;
+        width: 100%;
         opacity: 0;
         overflow: hidden;
         position: relative;
@@ -24,7 +28,11 @@ import { fromEvent, Subject, take, takeUntil } from 'rxjs'
   ],
   template: `
     <div class="w-full">
-      <div #revealer class="revealer w-full" [class.revealed]="revealed" [style.height]="(revealed ? contentHeight : 0) + 'px'">
+      <div
+        #revealer
+        class="revealer w-full"
+        [class.revealed]="revealed"
+        [style.height]="(revealed ? contentHeight : 0) + 'px'">
         <div #contentWrapper class="flex flex-col revealer-content absolute w-full">
           @if(contentShouldRender){
           <ng-content />
@@ -50,7 +58,7 @@ export class RevealerComponent implements OnInit, OnDestroy, OnChanges {
   getClientHeight = () => this.contentWrapper.nativeElement.clientHeight
 
   resolveContentHeight = () =>
-    new Promise<number>(resolve => {
+    new Promise<number>((resolve) => {
       requestAnimationFrame(() => resolve(this.getClientHeight()))
     })
 
