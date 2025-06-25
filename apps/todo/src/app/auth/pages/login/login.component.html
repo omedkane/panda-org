@@ -1,16 +1,40 @@
-<div class="flex size-full justify-center items-center">
-  <div class="flex w-100 flex-col justify-center items-center">
-    <span class="text-3xl font-bold">Welcome to <i class="font-light">UglyTodo</i></span>
+<div class="flex justify-center items-center size-full">
+  <div class="flex flex-col justify-center items-center w-100">
+    <span class="font-bold text-3xl">Welcome to <i class="font-light">UglyTodo</i></span>
     <span class="mt-1 text-zinc-700">you're just here to tick in and tick out ✨</span>
 
-    <div class="mt-12 w-full flex flex-col gap-y-5 items-center">
+    <div class="flex flex-col items-center gap-y-5 mt-8 w-full">
+      <app-revealer [revealed]="registerMode">
+        <div class="flex flex-col gap-y-5">
+          <input type="text" class="form-input" placeholder="Enter first name here..." />
+          <input type="text" class="form-input" placeholder="Enter last name here..." />
+        </div>
+      </app-revealer>
       <input type="email" class="form-input" placeholder="Enter email here..." />
       <input type="password" class="form-input" placeholder="Enter your password" />
     </div>
-    <button class="mt-7 bg-slate-600 rounded-2xl text-white py-3 w-1/2">Sign in</button>
-    <span class="mt-4 font-light"
-      >Don't have an account ?
-      <a class="font-medium italic underline underline-offset-4 text-slate-600">Sign up</a></span
-    >
+    <button class="bg-slate-600 mt-7 py-3 rounded-2xl w-1/2 text-white">
+      {{ registerMode ? 'Sign up' : 'Sign in' }}
+    </button>
+    <div class="mt-4 font-light">
+      <app-switcher [remoteIO]="registerMode">
+        <span switch-el="1">
+          Don't have an account ?
+          <button
+            (click)="registerMode = false"
+            class="font-medium text-slate-600 hover:text-slate-400 active:text-slate-700 underline underline-offset-4 italic cursor-pointer">
+            Sign up
+          </button>
+        </span>
+        <span switch-el="2">
+          Already have an account ?
+          <button
+            (click)="registerMode = true"
+            class="font-medium text-slate-600 hover:text-slate-400 active:text-slate-700 underline underline-offset-4 italic cursor-pointer">
+            Sign in
+          </button>
+        </span>
+      </app-switcher>
+    </div>
   </div>
 </div>
