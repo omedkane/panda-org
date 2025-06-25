@@ -12,7 +12,10 @@
     "@angular/platform-browser": "~20.0.0",
     "@angular/platform-browser-dynamic": "~20.0.0",
     "@angular/router": "~20.0.0",
+    "@tailwindcss/postcss": "^4.1.10",
+    "postcss": "^8.5.6",
     "rxjs": "~7.8.0",
+    "tailwindcss": "^4.1.10",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
@@ -53,5 +56,9 @@
     "tslib": "^2.3.0",
     "typescript": "~5.8.2",
     "typescript-eslint": "^8.29.0"
-  }
+  },
+  "trustedDependencies": [
+    "@parcel/watcher",
+    "@tailwindcss/oxide"
+  ]
 }
