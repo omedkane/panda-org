@@ -16,10 +16,10 @@ import {
   RegisterRequest,
 } from '@panda-org/shared-interfaces'
 import { JWTPayload } from 'jose'
-import { AuthState, IAuthState } from '../application/decorators/auth-state.decorator'
-import { TokenPayload } from '../application/decorators/token.decorator'
-import { AuthGuard } from '../application/guards/auth.guard'
-import { AuthService } from '../application/services/auth.service'
+import { AuthService } from '../../application/services/auth.service'
+import { AuthGuard } from '../../../shared/guards/auth.guard'
+import { AuthState, IAuthState } from '../../../shared/decorators/auth-state.decorator'
+import { TokenPayload } from '../../../shared/decorators/token.decorator'
 
 @Controller({ path: 'auth' })
 export class AuthController {
