@@ -15,7 +15,7 @@ async function bootstrap() {
 
   const globalPrefix = 'api'
   app.setGlobalPrefix(globalPrefix)
-  app.useGlobalPipes(new ValidationPipe())
+  app.useGlobalPipes(new ValidationPipe({ whitelist: true }))
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   await app.register(fastifyCookie as any, { secret: appConfig.security.cookie.secret })
