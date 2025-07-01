@@ -3,7 +3,7 @@
  * This is only a minimal backend to get started.
  */
 
-import { Logger } from '@nestjs/common'
+import { Logger, ValidationPipe } from '@nestjs/common'
 import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app/app.module'
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify'
@@ -15,6 +15,7 @@ async function bootstrap() {
 
   const globalPrefix = 'api'
   app.setGlobalPrefix(globalPrefix)
+  app.useGlobalPipes(new ValidationPipe())
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   await app.register(fastifyCookie as any, { secret: appConfig.security.cookie.secret })

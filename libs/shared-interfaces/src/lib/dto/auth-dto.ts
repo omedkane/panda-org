@@ -1,11 +1,17 @@
-export interface LoginRequest {
-  email: string
-  password: string
+import { IsEmail, IsNotEmpty, MinLength } from 'class-validator'
+
+export class LoginRequest {
+  @IsEmail(undefined, { message: 'Please enter a valid email' })
+  email!: string
+  @MinLength(8)
+  password!: string
 }
 
-export interface RegisterRequest extends LoginRequest {
-  firstname: string
-  lastname: string
+export class RegisterRequest extends LoginRequest {
+  @IsNotEmpty()
+  firstname!: string
+  @IsNotEmpty()
+  lastname!: string
 }
 
 export interface LogoutRequest {
