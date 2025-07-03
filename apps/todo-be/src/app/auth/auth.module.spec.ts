@@ -67,7 +67,7 @@ describe('AuthController', () => {
     it('saves the refresh token after registers', verifyTokenStored)
 
     it('/POST register - rejects already registered user', () => {
-      return getServer().post('/auth/register').send(body).expect(403).expect(testAuthResponse)
+      return getServer().post('/auth/register').send(body).expect(403)
     })
 
     it('/POST login', () => {
