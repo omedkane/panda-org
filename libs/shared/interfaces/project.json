@@ -1,7 +1,7 @@
 {
   "name": "shared-interfaces",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/shared-interfaces/src",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/interfaces/src",
   "projectType": "library",
   "tags": [],
   "// targets": "to see all targets run: nx show project shared-interfaces --web",
