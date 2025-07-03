@@ -14,11 +14,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node_version: '20'
+
       - name: Install dependencies
         run: npm install
 
       - name: Install Nx
         run: npm i -g nx
+
+      - name: Start Redis
+        uses: supercharge/redis-github-action@1.7.0
 
       - name: Run tests
         run: nx run todo-be:test
