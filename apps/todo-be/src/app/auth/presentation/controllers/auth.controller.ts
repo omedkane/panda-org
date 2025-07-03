@@ -8,18 +8,12 @@ import {
   UnauthorizedException,
   UseGuards,
 } from '@nestjs/common'
-import {
-  AuthResponse,
-  LoginRequest,
-  LogoutRequest,
-  RefreshRequest,
-  RegisterRequest,
-} from '@panda-org/shared-interfaces'
+import { AuthResponse, LoginRequest, LogoutRequest, RefreshRequest, RegisterRequest } from '@panda-org/interfaces'
 import { JWTPayload } from 'jose'
-import { AuthService } from '../../application/services/auth.service'
-import { AuthGuard } from '../../../shared/guards/auth.guard'
 import { AuthState, IAuthState } from '../../../shared/decorators/auth-state.decorator'
 import { TokenPayload } from '../../../shared/decorators/token.decorator'
+import { AuthGuard } from '../../../shared/guards/auth.guard'
+import { AuthService } from '../../application/services/auth.service'
 
 @Controller({ path: 'auth' })
 export class AuthController {
@@ -49,12 +43,15 @@ export class AuthController {
     const success = await this.service.logout(logoutRequest.refreshToken, authState.userID)
     if (!success) throw new BadRequestException()
 
-    return { message: 'successfully logged out' }
+    return { success: true }
   }
 
   @Post('refresh')
   async refresh(@Body() refreshRequest: RefreshRequest, @TokenPayload() token: JWTPayload): Promise<AuthResponse> {
-    if (!token.sub) throw new BadRequestException()
+    if (!token.sub) throw new BadRequestException('Token not associated with user')
+    const expirationMs = (token.exp ?? 0) * 1000
+
+    if (expirationMs > Date.now()) throw new BadRequestException('Token has not expired yet')
 
     const tokens = await this.service.refresh(refreshRequest.refreshToken, token.sub)
 

@@ -1,3 +1,5 @@
+import { isTestEnv } from '@panda-org/helpers'
+
 export const appConfig = {
   security: {
     jwt: {
@@ -9,10 +11,10 @@ export const appConfig = {
           public: path + 'ed25519_public.pem',
         }
       })(),
-      expiration: '5 minutes',
+      expiration: isTestEnv() ? '1 second' : '5 minutes',
     },
     refreshToken: {
-      exp: 604800, // * 7 days
+      exp: isTestEnv() ? 3 : 604800, // * 7 days
     },
     hash: {
       default: {

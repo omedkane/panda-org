@@ -16,7 +16,8 @@
     "strictNullChecks": true,
     "baseUrl": ".",
     "paths": {
-      "@panda-org/shared-interfaces": ["libs/shared-interfaces/src/index.ts"]
+      "@panda-org/helpers": ["libs/shared/helpers/src/index.ts"],
+      "@panda-org/interfaces": ["libs/shared/interfaces/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

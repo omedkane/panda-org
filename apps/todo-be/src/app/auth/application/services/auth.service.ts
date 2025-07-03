@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { LoginRequest, RegisterRequest } from '@panda-org/shared-interfaces'
+import { LoginRequest, RegisterRequest } from '@panda-org/interfaces'
 import * as bcrypt from 'bcrypt'
 import { Repository } from 'typeorm'
 import { appConfig } from '../../../config'

@@ -18,7 +18,7 @@ export class User {
   @Column()
   password: string
 
-  @OneToOne(() => HashMode)
+  @OneToOne(() => HashMode, { cascade: true })
   @JoinColumn()
   hashMode: HashMode
 }
