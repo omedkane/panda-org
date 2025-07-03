@@ -52,6 +52,11 @@ export class AuthService {
     return await this.hashModeRepo.findOneBy({ isDefault: true })
   }
 
+  async userExists(email: string) {
+    const user = await this.repo.findOneBy({ email })
+    return user !== null
+  }
+
   async register(registerRequest: RegisterRequest) {
     const { email, password, firstname, lastname } = registerRequest
     const defaultHashMode = await this.getDefaultHashMode()

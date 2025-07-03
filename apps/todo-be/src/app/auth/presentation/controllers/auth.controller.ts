@@ -30,6 +30,8 @@ export class AuthController {
 
   @Post('register')
   async register(@Body() request: RegisterRequest): Promise<AuthResponse> {
+    const userExists = await this.service.userExists(request.email)
+    if (userExists) throw new ForbiddenException('User already exists')
     const tokens = await this.service.register(request)
 
     if (!tokens) throw new InternalServerErrorException()
