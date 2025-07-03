@@ -1,0 +1,24 @@
+name: UglyApp CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  install-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node_version: '20'
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Nx
+        run: npm i -g nx
+
+      - name: Run tests
+        run: nx run todo-be:test
