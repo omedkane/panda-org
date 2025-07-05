@@ -22,5 +22,8 @@ jobs:
       - name: Start Redis
         uses: supercharge/redis-github-action@1.7.0
 
-      - name: Run tests
+      - name: Test Backend
         run: nx run todo-be:test
+
+      - name: Lint Backend
+        run: nx run todo-be:lint
