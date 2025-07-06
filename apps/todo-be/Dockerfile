@@ -6,6 +6,6 @@ COPY dist/apps/todo-be/ ./
 
 RUN bun install
 
-EXPOSE 3128
+EXPOSE 3000
 
 CMD ["bun", "main.js"]

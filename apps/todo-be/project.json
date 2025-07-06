@@ -51,7 +51,7 @@
       "dependsOn": [
         "build"
       ],
-      "command": "docker-compose -f be.compose.yml up --build"
+      "command": "docker compose -f 'apps/todo-be/docker-compose.yml' up --build"
     }
   }
 }

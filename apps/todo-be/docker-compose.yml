@@ -2,20 +2,20 @@ services:
   app:
     container_name: "uglyapp-be"
     build:
-      context: .
-      dockerfile: be.dockerfile
+      context: ../..
+      dockerfile: apps/todo-be/Dockerfile
     ports:
-      - '3128:3000'
+      - '3000:3000'
     depends_on:
       - mysql
       - redis
     environment:
       MYSQL_HOST: mysql
       REDIS_HOST: redis
-      PRIVATE_KEY_PATH: /app/keys/ed25519_private.pem
-      PUBLIC_KEY_PATH: /app/keys/ed25519_public.pem
+      PRIVATE_KEY_PATH: keys/ed25519_private.pem
+      PUBLIC_KEY_PATH: keys/ed25519_public.pem
     volumes:
-      - ./apps/todo-be/secrets/certs/:/app/keys/:ro
+      - ./secrets/certs:/app/keys:ro
   mysql:
     image: mysql:latest
     restart: always
