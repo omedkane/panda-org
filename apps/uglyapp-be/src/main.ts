@@ -21,7 +21,7 @@ async function bootstrap() {
   await app.register(fastifyCookie as any, { secret: appConfig.security.cookie.secret })
 
   const port = process.env.PORT || 3000
-  await app.listen(port)
+  await app.listen(port, process.env.ADDRESS ?? '127.0.0.1')
 
   Logger.log(`🚀 Application is running on: http://localhost:${port}/${globalPrefix}`)
 }

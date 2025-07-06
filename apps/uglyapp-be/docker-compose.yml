@@ -5,7 +5,7 @@ services:
       context: ../..
       dockerfile: apps/uglyapp-be/Dockerfile
     ports:
-      - '3000:3000'
+      - '3128:3000'
     depends_on:
       - mysql
       - redis
@@ -14,6 +14,7 @@ services:
       REDIS_HOST: redis
       PRIVATE_KEY_PATH: keys/ed25519_private.pem
       PUBLIC_KEY_PATH: keys/ed25519_public.pem
+      ADDRESS: 0.0.0.0
     volumes:
       - ./secrets/certs:/app/keys:ro
   mysql:
@@ -21,6 +22,7 @@ services:
     restart: always
     volumes:
       - mysql_data:/var/lib/mysql
+      - ./database/init:/docker-entrypoint-initdb.d
     environment:
       MYSQL_DATABASE: uglyapp
       MYSQL_ALLOW_EMPTY_PASSWORD: yes

@@ -6,6 +6,6 @@ COPY dist/apps/uglyapp-be/ ./
 
 RUN bun install
 
-EXPOSE 3000
+EXPOSE 3128
 
 CMD ["bun", "main.js"]
