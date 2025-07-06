@@ -16,7 +16,12 @@ import { createClient } from 'redis'
     {
       provide: 'REDIS_CONNECTION',
       useFactory: async () => {
-        return await createClient()
+        return await createClient({
+          socket: {
+            host: process.env.REDIS_HOST ?? 'localhost', // ← service name in docker-compose
+            port: 6379,
+          },
+        })
           .on('error', (err) => console.log('err:', err))
           .connect()
       },

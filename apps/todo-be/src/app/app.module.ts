@@ -9,7 +9,7 @@ import { User } from './auth/domain/entities/user.entity'
     AuthModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
+      host: process.env.MYSQL_HOST ?? 'localhost',
       port: 3306,
       username: 'root',
       database: 'uglyapp',

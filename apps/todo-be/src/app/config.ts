@@ -4,13 +4,10 @@ export const appConfig = {
   security: {
     jwt: {
       alg: 'EdDSA',
-      keys: (() => {
-        const path = 'apps/todo-be/secrets/certs/'
-        return {
-          private: path + 'ed25519_private.pem',
-          public: path + 'ed25519_public.pem',
-        }
-      })(),
+      keys: {
+        private: process.env.PRIVATE_KEY_PATH as string,
+        public: process.env.PUBLIC_KEY_PATH as string,
+      },
       expiration: isTestEnv() ? '1 second' : '5 minutes',
     },
     refreshToken: {

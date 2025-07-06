@@ -2,8 +2,8 @@ import { Inject, Injectable } from '@nestjs/common'
 import crypto, { KeyObject } from 'crypto'
 import { readFileSync } from 'fs'
 import { jwtVerify, SignJWT } from 'jose'
-import { appConfig } from '../../../config'
 import { RedisClientType } from 'redis'
+import { appConfig } from '../../../config'
 
 @Injectable()
 export class JWTService {
@@ -46,7 +46,7 @@ export class JWTService {
   }
 
   async verifyRefreshToken(refreshToken: string, userID: string) {
-    return userID === await this.db.get(`refresh:${refreshToken}`)
+    return userID === (await this.db.get(`refresh:${refreshToken}`))
   }
 
   async deleteRefreshToken(refreshToken: string) {

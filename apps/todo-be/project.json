@@ -46,6 +46,12 @@
       "options": {
         "jestConfig": "apps/todo-be/jest.config.ts"
       }
+    },
+    "docker-build": {
+      "dependsOn": [
+        "build"
+      ],
+      "command": "docker-compose -f be.compose.yml up --build"
     }
   }
 }

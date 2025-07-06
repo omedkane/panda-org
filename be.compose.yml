@@ -1,0 +1,39 @@
+services:
+  app:
+    container_name: "uglyapp-be"
+    build:
+      context: .
+      dockerfile: be.dockerfile
+    ports:
+      - '3128:3000'
+    depends_on:
+      - mysql
+      - redis
+    environment:
+      MYSQL_HOST: mysql
+      REDIS_HOST: redis
+      PRIVATE_KEY_PATH: /app/keys/ed25519_private.pem
+      PUBLIC_KEY_PATH: /app/keys/ed25519_public.pem
+    volumes:
+      - ./apps/todo-be/secrets/certs/:/app/keys/:ro
+  mysql:
+    image: mysql:latest
+    restart: always
+    volumes:
+      - mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: uglyapp
+      MYSQL_ALLOW_EMPTY_PASSWORD: yes
+    ports:
+      - '3306:3306'
+  redis:
+    image: redis:latest
+    restart: always
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_data:/data
+
+volumes:
+  mysql_data:
+  redis_data:
