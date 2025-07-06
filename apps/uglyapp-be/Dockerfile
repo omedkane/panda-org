@@ -2,7 +2,7 @@ FROM oven/bun:latest
 
 WORKDIR /app
 
-COPY dist/apps/todo-be/ ./
+COPY dist/apps/uglyapp-be/ ./
 
 RUN bun install
 

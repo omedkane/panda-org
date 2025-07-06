@@ -23,7 +23,7 @@ jobs:
         uses: supercharge/redis-github-action@1.7.0
 
       - name: Test Backend
-        run: nx run todo-be:test
+        run: nx run uglyapp-be:test
 
       - name: Lint Backend
-        run: nx run todo-be:lint
+        run: nx run uglyapp-be:lint

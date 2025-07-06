@@ -3,7 +3,7 @@ services:
     container_name: "uglyapp-be"
     build:
       context: ../..
-      dockerfile: apps/todo-be/Dockerfile
+      dockerfile: apps/uglyapp-be/Dockerfile
     ports:
       - '3000:3000'
     depends_on:

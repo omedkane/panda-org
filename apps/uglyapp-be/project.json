@@ -1,7 +1,7 @@
 {
-  "name": "todo-be",
+  "name": "uglyapp-be",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/todo-be/src",
+  "sourceRoot": "apps/uglyapp-be/src",
   "projectType": "application",
   "tags": [],
   "targets": {
@@ -29,29 +29,29 @@
         "build"
       ],
       "options": {
-        "buildTarget": "todo-be:build",
+        "buildTarget": "uglyapp-be:build",
         "runBuildTargetDependencies": false
       },
       "configurations": {
         "development": {
-          "buildTarget": "todo-be:build:development"
+          "buildTarget": "uglyapp-be:build:development"
         },
         "production": {
-          "buildTarget": "todo-be:build:production"
+          "buildTarget": "uglyapp-be:build:production"
         }
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
       "options": {
-        "jestConfig": "apps/todo-be/jest.config.ts"
+        "jestConfig": "apps/uglyapp-be/jest.config.ts"
       }
     },
     "docker-build": {
       "dependsOn": [
         "build"
       ],
-      "command": "docker compose -f 'apps/todo-be/docker-compose.yml' up --build"
+      "command": "docker compose -f 'apps/uglyapp-be/docker-compose.yml' up --build"
     }
   }
 }
