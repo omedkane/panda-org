@@ -1,0 +1,28 @@
+image: node:lts-alpine
+stages:
+  - install-deps
+  - test
+  - lint
+
+services:
+  - redis:latest
+
+install-deps-job:
+  stage: install-deps
+  script:
+    - npm install
+  artifacts:
+    paths:
+      - node_modules
+
+test-job:
+  stage: test
+  script:
+    - echo "REDIS_HOST=redis" >> ".env"
+    - npx nx run uglyapp-be:test
+
+lint-job:
+  stage: lint
+  script:
+  - npx nx run uglyapp-be:lint
+
